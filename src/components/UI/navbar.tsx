@@ -11,10 +11,13 @@ import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { Avatar } from "@nextui-org/avatar";
+
+import { ThemeSwitch } from "./theme-switch";
 
 import { siteConfig } from "@/src/config/site";
 import { Logo } from "@/src/components/icons";
-import { ThemeSwitch } from "./theme-switch";
+import NavbarDropdown from "./NavbarDropdown/NavbarDropdown";
 
 export const Navbar = () => {
   return (
@@ -50,6 +53,9 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className="hidden sm:flex gap-2">
+          <NavbarDropdown />
         </NavbarItem>
       </NavbarContent>
 
