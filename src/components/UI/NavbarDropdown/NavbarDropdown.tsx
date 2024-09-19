@@ -38,6 +38,12 @@ const NavbarDropdown = () => {
           >
             Setting
           </DropdownItem>
+          <DropdownItem
+            key="copy"
+            onClick={() => handleNavigation("/profile/settings")}
+          >
+            Setting
+          </DropdownItem>
 
           <DropdownItem
             key="delete"
