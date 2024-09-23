@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-key */
-import CardSkeleton from "@/src/components/UI/CardSkeleton/CardSkeleton";
-import Container from "@/src/components/UI/container";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import React from "react";
+
+import Container from "@/src/components/UI/container";
+import CardSkeleton from "@/src/components/UI/CardSkeleton/CardSkeleton";
 
 const loading = () => {
   return (
@@ -20,7 +21,7 @@ const loading = () => {
           <p>{post.title}</p>
         ))} */}
         {[...Array(9)].map(() => (
-          <CardSkeleton />
+          <CardSkeleton key={Array.length} />
         ))}
       </div>
       <div className="flex justify-center">

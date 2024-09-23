@@ -24,6 +24,7 @@ export default function FXInput({
     register,
     formState: { errors },
   } = useFormContext();
+  console.log(errors);
 
   return (
     <Input

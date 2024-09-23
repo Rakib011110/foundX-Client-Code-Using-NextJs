@@ -1,11 +1,66 @@
-import React from "react";
+"use client";
 
-const page = () => {
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
+import { Button } from "@nextui-org/button";
+import { Divider } from "@nextui-org/divider";
+
+import FXInput from "@/src/components/form/FxInput";
+
+const CreatePost = () => {
+  const methods = useForm();
+
+  const { control, handleSubmit } = methods;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "questions",
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const postData = {
+      ...data,
+      questions: {
+        questions: data.questions.map((que: { value: string }) => que.value),
+      },
+    };
+
+    console.log(postData);
+  };
+
+  const handleAppendFieldValue = () => {
+    append({ name: "questions" });
+  };
+
   return (
     <div>
-      <h1> Here is user create-post</h1>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FXInput label="Title" name="titile" />
+
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl">Owner verification questions</h1>
+            <Button onClick={() => handleAppendFieldValue()}>Append</Button>
+          </div>
+
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex items-center">
+              <FXInput name={`questions.${index}.value`} label="Question" />
+              <Button onClick={() => remove(index)}>Remove</Button>
+            </div>
+          ))}
+          <Divider className="my-5" />
+
+          <Button type="submit">POST</Button>
+        </form>
+      </FormProvider>
     </div>
   );
 };
 
-export default page;
+export default CreatePost;
