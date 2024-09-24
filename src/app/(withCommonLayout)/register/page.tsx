@@ -2,14 +2,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
 
 import FXInput from "@/src/components/form/FxInput";
 import FXForm from "@/src/components/form/FXForm";
 import registerValidationSchema from "@/src/schemas/registerValidationSchema";
-import { registerUser } from "@/src/services/AuthService";
 import { useUserRegistration } from "@/src/hooks/auth.hook";
 
 const RegisterPage = () => {
@@ -25,7 +23,7 @@ const RegisterPage = () => {
     ///////
   }
 
-  console.log({ data, isError, isSuccess, isPending });
+  // console.log({ data, isError, isSuccess, isPending });
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {
       ...data,
